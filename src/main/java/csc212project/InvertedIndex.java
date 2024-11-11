@@ -45,11 +45,11 @@ public class InvertedIndex {
         }
         inverted_index.findFirst();
         while (! inverted_index.last()){
-            inverted_index.retrieve().display();;
+            inverted_index.retrieve().display();
             inverted_index.findNext();
         }
         //For the last word
-        inverted_index.retrieve().display();;
+        inverted_index.retrieve().display();
      
     }
     

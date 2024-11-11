@@ -42,23 +42,23 @@ public class index {
             doc.words.display();
             
     }
-    public static void main(String[]args){
-        index ind1= new  index();
-        LinkedList<String> words = new LinkedList<>();
-        words.insert("national");
-         words.insert("flag");
-         Document d1= new Document(1,words);
-         ind1.add_document(d1);
-         
-         
-        LinkedList<String> words2 = new LinkedList<>();
-        words2.insert("green");
-         words2.insert("flag");
-          Document d2= new Document(2,words2);
-         
-           ind1.add_document(d2);
-           
-           ind1.displayDocuments();
-    }
+//    public static void main(String[]args){
+//        index ind1= new  index();
+//        LinkedList<String> words = new LinkedList<>();
+//        words.insert("national");
+//         words.insert("flag");
+//         Document d1= new Document(1,words);
+//         ind1.add_document(d1);
+//         
+//         
+//        LinkedList<String> words2 = new LinkedList<>();
+//        words2.insert("green");
+//         words2.insert("flag");
+//          Document d2= new Document(2,words2);
+//         
+//           ind1.add_document(d2);
+//           
+//           ind1.displayDocuments();
+//    }
   
     }

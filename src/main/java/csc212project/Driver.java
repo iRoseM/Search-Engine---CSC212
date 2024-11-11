@@ -9,6 +9,8 @@ public class Driver {
     index index1;
     InvertedIndex inverted;
     InvertedIndexBST invertedBST;
+    String line;
+    
     public Driver(){
     stopWord=new LinkedList<>();
     index1=new index();
