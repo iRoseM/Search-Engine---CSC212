@@ -99,7 +99,7 @@ public void displayWords(){
 
 public static void main(String args[]){
     Driver driver=new Driver();
-    driver.LoadFiles( "stop.txt", "Test.csv");
+    driver.LoadFiles( "stop.txt", "dataset.csv");
     driver.indexl.displayDocuments();
     System.out.println("\n");
     driver.inverted.display_inverted_index();
