@@ -84,21 +84,21 @@ public class LinkedList<T> {
         
         Node<T> p= head;
         while (p != null){
-            System.out.println(p.data + " ");
+            System.out.print(p.data + " ");
             p= p.next;
         }
     }
     
    
-   public static void main(String [] args){
-       LinkedList<String> l= new LinkedList<String>();
-       
-       l.insert("aa");
-       l.insert("b");
-       l.insert("c");
-       
-       l.findFirst();
-       l.remove();
-       l.display();
-   }
+//   public static void main(String [] args){
+//       LinkedList<String> l= new LinkedList<String>();
+//       
+//       l.insert("aa");
+//       l.insert("b");
+//       l.insert("c");
+//       
+//       l.findFirst();
+//       l.remove();
+//       l.display();
+//   }
 }
