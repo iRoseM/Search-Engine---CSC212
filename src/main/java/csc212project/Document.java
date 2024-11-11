@@ -10,6 +10,4 @@ public class Document {
         this.id=id;
         this.words=words;
     }
-    
- 
-}
+    }

@@ -38,7 +38,8 @@ public class Word {
     
     public void display(){
         System.out.println("\n--------------------------");
-        System.out.print("Word: "+text);
+        System.out.print("Word: "+text+"\n");
+        System.out.print("Document IDs: ");
         System.out.print("[");
         doc_IDS.display();
         System.out.print("]");

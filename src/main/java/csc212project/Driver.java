@@ -20,9 +20,10 @@ public void LoadStopWords(String fileName){
     try{
         File file=new File (fileName) ;
         Scanner Read=new Scanner (file) ;
-        while (Read.hasNextLine() )
-        line=Read.nextLine(); 
-        stopWords.insert(line) ;
+        while (Read.hasNextLine() ){
+            line=Read.nextLine(); 
+            stopWords.insert(line) ;
+        }
     }catch(IOException e){
         e.printStackTrace();
     }
@@ -36,19 +37,20 @@ public void LoadAllDoc(String fileName){
         Read.nextLine() ;
 
         while (Read.hasNextLine()){
-        line=Read.nextLine() ;
+            line=Read.nextLine() ;
 
-        if (line.trim().length()<3)
-        break;
-
-        String F =line.substring(0,line.indexOf(',')).trim();
-        int id = Integer.parseInt(F) ;
-        String WORDS = line.substring (line.indexOf(',')+1).trim() ;
-        LinkedList<String>WordsINDoc=InvertedIndexDoc(WORDS, id) ;
-        indexl.add_document(new Document (id,WordsINDoc)) ;
-    }
+            if (line.trim().length()<3){
+                System.out.println("Empty line found, skipping to the next one.");
+                break;
+        }
+            String F =line.substring(0,line.indexOf(',')).trim();
+            int id = Integer.parseInt(F) ;
+            String WORDS = line.substring (line.indexOf(',')+1).trim() ;
+            LinkedList<String>WordsINDoc=InvertedIndexDoc(WORDS, id) ;
+            indexl.add_document(new Document (id,WordsINDoc)) ;
+        }
     }catch(Exception e) {
-        System.out.println("end of file");
+        System.out.println("End of file");
     }
 }
 
@@ -97,7 +99,7 @@ public void displayWords(){
 
 public static void main(String args[]){
     Driver driver=new Driver();
-    driver.LoadFiles( "stop.txt", "dataset.csv");
+    driver.LoadFiles( "stop.txt", "Test.csv");
     driver.indexl.displayDocuments();
     System.out.println("\n");
     driver.inverted.display_inverted_index();

@@ -25,7 +25,7 @@ public class InvertedIndex {
             return false;
         inverted_index.findFirst();
         while (!inverted_index.last()) {
-            if (inverted_index.retrieve().equals(word))
+            if (inverted_index.retrieve().text.equals(word))
                 return true;
             inverted_index.findNext();
         }
