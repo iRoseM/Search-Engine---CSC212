@@ -35,6 +35,14 @@ public class Word {
             }
       return false;
     }
+    
+    public void display(){
+        System.out.println("\n--------------------------");
+        System.out.println("Word: "+text);
+        System.out.println("[");
+        doc_IDS.display();
+        System.out.println("]");
+    }
 
 
 }
