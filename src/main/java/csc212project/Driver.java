@@ -38,6 +38,7 @@ public void LoadAllDoc(String fileName){
 
         while (Read.hasNextLine()){
             line=Read.nextLine() ;
+            
 
             if (line.trim().length()<3){
                 System.out.println("Empty line found, skipping to the next one.");
@@ -88,8 +89,9 @@ public boolean IsStopWord (String word) {
 }
 
 public void LoadFiles(String stop , String doucment){
-    LoadAllDoc(doucment);
     LoadStopWords(stop);
+    LoadAllDoc(doucment);
+    
 }
 
 
@@ -98,8 +100,11 @@ public void displayWords(){
 }
 
 public static void main(String args[]){
+
     Driver driver=new Driver();
-    driver.LoadFiles( "stop.txt", "dataset.csv");
+
+    driver.LoadFiles( "stop.txt", "dataset2.csv");
+//    driver.displayWords();
     driver.indexl.displayDocuments();
     System.out.println("\n");
     driver.inverted.display_inverted_index();
