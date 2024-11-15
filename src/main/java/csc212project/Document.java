@@ -10,4 +10,10 @@ public class Document {
         this.id=id;
         this.words=words;
     }
+
+    public int getId() {
+        return id;
+    }
+    
+    
     }

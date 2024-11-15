@@ -1,17 +1,17 @@
 
 package csc212project;
 
-public class QueryProcessing { 
-    static InvertedIndex inverted;
-    
-public QueryProcessing (InvertedIndex inverted) {
-    this. inverted=inverted;
-}
-
-public static LinkedList<Integer>AndQuery (String Query) {
+public class QueryProcessingBST {
+   static InvertedIndexBST inverted;
+   
+   public QueryProcessingBST(InvertedIndexBST i){
+       inverted= i;
+   }
+   
+   public static LinkedList<Integer>AndQuery(String Query){
     LinkedList<Integer> A=new LinkedList<Integer>() ;
     LinkedList<Integer> B=new LinkedList<Integer>() ;
-    String terms []=Query.split ("AND"); 
+    String terms[]=Query.split("AND");
     if (terms.length==0) 
         return A;
     boolean found=inverted.search_word_in_inverted (terms[0].trim ().toLowerCase()) ;
@@ -22,12 +22,11 @@ public static LinkedList<Integer>AndQuery (String Query) {
     found= inverted. search_word_in_inverted (terms[i].trim().toLowerCase()) ;
     if (found)
         B=inverted.inverted_index.retrieve().doc_IDS;
-    A= AndQuery (A, B) ;
+    A= AndQuery(A, B) ;
     }
     return A;
 }
-
-    public static LinkedList<Integer > AndQuery (LinkedList<Integer>A, LinkedList<Integer>B) {
+   public static LinkedList<Integer > AndQuery (LinkedList<Integer>A, LinkedList<Integer>B) {
         LinkedList<Integer> result=new LinkedList<Integer>();
         if (A. empty() || B.empty())
             return result;
@@ -54,8 +53,8 @@ public static LinkedList<Integer>AndQuery (String Query) {
             }
         return result;
 }
-    
-    public static LinkedList<Integer>OrQuery (String Query) {
+   
+   public static LinkedList<Integer>OrQuery (String Query) {
         LinkedList<Integer> A=new LinkedList<Integer>() ;
         LinkedList<Integer> B=new LinkedList<Integer>() ;
         String terms []=Query.split ("OR"); 
@@ -101,7 +100,7 @@ public static LinkedList<Integer>AndQuery (String Query) {
         }//end inner while for B
         return result;
 }
-        
+            
     public static LinkedList<Integer> BooleanQuery(String Query){
         if(!Query.contains("AND") && !Query.contains("OR"))
             return AndQuery(Query);
@@ -127,7 +126,6 @@ public static LinkedList<Integer>AndQuery (String Query) {
         }
         return A;
 }
-    
     public static boolean existsIn_result(LinkedList<Integer>result, int id){
         if (result.empty())
             return false;
@@ -141,4 +139,7 @@ public static LinkedList<Integer>AndQuery (String Query) {
             return true;
         return false;
     }
+
+   
+   
 }

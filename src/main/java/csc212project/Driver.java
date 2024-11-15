@@ -8,12 +8,14 @@ public class Driver{
 LinkedList<String> stopWords;
 index indexl;
 InvertedIndex inverted;
+InvertedIndexBST invertedBST;
 String line ;
 
 public Driver (){
     stopWords=new LinkedList<>();
     indexl=new index();
     inverted=new InvertedIndex();
+    invertedBST= new InvertedIndexBST();
 }
 
 public void LoadStopWords(String fileName){
@@ -68,6 +70,7 @@ public void InvertedIndex(String WORDS, LinkedList<String>WordsINDoc, int id){
         if (!IsStopWord(w)){
             WordsINDoc.insert(w);
             inverted.add(w , id);
+            invertedBST.add(w, id);
         }
     }
 }
@@ -95,19 +98,109 @@ public void LoadFiles(String stop , String doucment){
 }
 
 
-public void displayWords(){
+public void displayStopWords(){
     stopWords.display ();
 }
 
-public static void main(String args[]){
+public void displayDocById(LinkedList<Integer> ids) {
+    if (ids.empty()) {
+        System.err.println("IDs list is empty.");
+        return;
+    }
 
-    Driver driver=new Driver();
+    ids.findFirst();
+    while (!ids.last()) {
+        int docID = ids.retrieve();
+        indexl.findAndDisplayDoc(docID);
+        ids.findNext();
+    }
+    indexl.findAndDisplayDoc(ids.retrieve());
+}
 
+    public static void testDataset2(){
+    Driver driver= new Driver();
     driver.LoadFiles( "stop.txt", "dataset2.csv");
-//    driver.displayWords();
-    driver.indexl.displayDocuments();
-    System.out.println("\n");
-    driver.inverted.display_inverted_index();
+    System.out.println("\n=========================================================");
+    QueryProcessing queryProcessing= new QueryProcessing(driver.inverted);
+    LinkedList queryResult;
+    
+    System.out.println("\n================= color AND green AND white =================");
+    queryResult= QueryProcessing.MixedQuery("color AND green AND white");
+    driver.displayDocById(queryResult);
+    
+    System.out.println("\n=================== green OR shahada ===================");
+    queryResult= QueryProcessing.MixedQuery("green OR shahada");
+    driver.displayDocById(queryResult);
+    
+}
+
+    public static void testDataset(){
+        Driver driver= new Driver();
+        driver.LoadFiles( "stop.txt", "dataset.csv");
+        System.out.println("\n=========================================================");
+        QueryProcessing queryProcessing= new QueryProcessing(driver.inverted);
+        LinkedList queryResult;
+
+        System.out.println("\n=================== market AND sports ===================");
+        queryResult= QueryProcessing.MixedQuery("market AND sports");
+        driver.displayDocById(queryResult);
+        
+        System.out.println("\n=================== weather AND warming ===================");
+        queryResult= QueryProcessing.MixedQuery("weather AND warming");
+        driver.displayDocById(queryResult);
+        
+        System.out.println("\n=================== business AND world ===================");
+        queryResult= QueryProcessing.MixedQuery("business AND world");
+        driver.displayDocById(queryResult);
+        
+        System.out.println("\n=================== weather OR warming ===================");
+        queryResult= QueryProcessing.MixedQuery("weather OR warming");
+        driver.displayDocById(queryResult);
+        
+        System.out.println("\n=================== market OR sports ===================");
+        queryResult= QueryProcessing.MixedQuery("market OR sports");
+        driver.displayDocById(queryResult);
+        
+        System.out.println("\n=================== market OR sports AND warming ===================");
+        queryResult= QueryProcessing.MixedQuery("market OR sports AND warming");
+        driver.displayDocById(queryResult);
+}
+
+public static void main(String args[]){
+    testDataset2();
+    testDataset();
+    
+    
+    
+//    Driver driver=new Driver();
+//
+//    driver.LoadFiles( "stop.txt", "dataset.csv");
+//    driver.displayStopWords();
+//    driver.indexl.displayDocuments();
+//    System.out.println("\n");
+//    driver.inverted.display_inverted_index();
+//    
+//    
+//    System.out.println("\n=================== InvertedBST from the Inverted list ===================");
+    //driver.inverted.display_inverted_index();
+//    InvertedIndexBST inverted2= new InvertedIndexBST();
+    
+    
+    
+    //output is the same but the firstone is by using LinkedList and the other one using BST
+    
+    
+//    QueryProcessing queryProcessing= new QueryProcessing(driver.inverted);
+    //testing AndQuery
+//    System.out.println("\n=================== Intersection ===================");
+//    LinkedList resultIntersection= QueryProcessing.AndQuery("colorANDflag");
+//    driver.displayDocById(resultIntersection);
+    
+    //testing OrQuery
+//    System.out.println("\n====================== Union ======================");
+//    LinkedList resultUnion= QueryProcessing.OrQuery("Arabia OR pole ORcolor");
+//    driver.displayDocById(resultUnion);
+    
 }
 
 }

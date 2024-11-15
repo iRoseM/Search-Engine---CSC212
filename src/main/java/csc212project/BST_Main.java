@@ -1,6 +1,6 @@
 
 package csc212project;
-public class BST_Main {
+public class BST_Main { //for testing BST methods
     public static void main (String[]args) {
         BST<Double>bt=new BST<Double> () ;
         System.out.println("is empty ? :"+bt.empty());

@@ -9,7 +9,7 @@ public class index {
         all_doc=new LinkedList<Document>();
         
     }
-    
+
     ///helping methods//
     public void add_document(Document d)
     {
@@ -42,6 +42,28 @@ public class index {
             doc.words.display();
             
     }
+    
+    public void findAndDisplayDoc(int id) {
+    all_doc.findFirst();
+    while (!all_doc.last()) {
+        Document doc = all_doc.retrieve();
+        if (doc.id == id) {
+            System.out.println("\nDocument ID: " + id);
+            doc.words.display();
+            return;
+        }
+        all_doc.findNext();
+    }
+    Document doc = all_doc.retrieve();
+    if (doc.id == id) {
+        System.out.println("Document ID: " + id);
+        doc.words.display();
+    } else {
+        System.out.println("Document ID: " + id + " not found.");
+    }
+}
+    
+    
 //    public static void main(String[]args){
 //        index ind1= new  index();
 //        LinkedList<String> words = new LinkedList<>();

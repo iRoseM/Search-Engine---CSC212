@@ -20,12 +20,15 @@ public class BST<T> {
     public boolean empty (){
         return root == null;
     }
+    
     public boolean full(){
         return false;
     }
+    
     public T retrieve (){
         return current.data;
     }
+    
     public boolean findKey(String k){
         BSTNode<T> p = root;
         while (p != null) {
@@ -39,6 +42,7 @@ public class BST<T> {
         }
         return false;
     }
+    
     public boolean insert (String k , T val ){
         if (root == null){
             current = root = new BSTNode <T> (k , val);
@@ -57,27 +61,32 @@ public class BST<T> {
         current = tmp;
         return true;
     }
+    
     public void inOrder (){ 
         if (root == null) 
             System.out.println("Empty tree");
         else 
             inOrder(root);
     }
+    
     private void inOrder (BSTNode p ) {
         if (p == null )
             return;
         inOrder(p.left);
         System.out.println("Key= "+p.key);
         System.out.println(p.data);
-        //((LinkedList<T>)p.data). display(); //When   dealign with linkedlist
+        //((LinkedList<T>)p.data). display(); //When dealign with linkedlist
+        ((Word)p.data).display();
         inOrder(p.right);
     }
+    
     public void preOrder(){
         if (root == null)
             System.out.println("Empty tree");
         else
             preOrder(root);
     }
+    
     public void preOrder (BSTNode p ){
         if (p == null )
             return;

@@ -42,7 +42,7 @@ public class Word {
         System.out.print("Document IDs: ");
         System.out.print("[");
         doc_IDS.display();
-        System.out.print("]");
+        System.out.println("]");
     }
 
 
