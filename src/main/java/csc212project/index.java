@@ -63,6 +63,17 @@ public class index {
     }
 }
     
+//    Method to retrun document given the id, used in class Ranked
+    public Document get_document_given_id(int id) {
+        all_doc.findFirst();
+        while (!all_doc.last()) {
+            Document doc = all_doc.retrieve();
+            if (doc.id == id)
+                return doc;
+        }
+        return null; //if not found
+    }
+    
     
 //    public static void main(String[]args){
 //        index ind1= new  index();
