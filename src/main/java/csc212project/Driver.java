@@ -149,23 +149,23 @@ public void displayDocById(LinkedList<Integer> ids) {
         driver.displayDocById(queryResult);
         
         System.out.println("\n# Q: weather AND warming");
-        queryResult= QueryProcessing.MixedQuery("weather AND warming");
+        queryResult= QueryProcessing.BooleanQuery("weather AND warming");
         driver.displayDocById(queryResult);
         
         System.out.println("\n# Q: business AND world");
-        queryResult= QueryProcessing.MixedQuery("business AND world");
+        queryResult= QueryProcessing.BooleanQuery("business AND world");
         driver.displayDocById(queryResult);
         
         System.out.println("\n# Q: weather OR warming");
-        queryResult= QueryProcessing.MixedQuery("weather OR warming");
+        queryResult= QueryProcessing.BooleanQuery("weather OR warming");
         driver.displayDocById(queryResult);
         
         System.out.println("\n# Q: market OR sports");
-        queryResult= QueryProcessing.MixedQuery("market OR sports");
+        queryResult= QueryProcessing.BooleanQuery("market OR sports");
         driver.displayDocById(queryResult);
         
         System.out.println("\n# Q: market OR sports AND warming");
-        queryResult= QueryProcessing.MixedQuery("market OR sports AND warming");
+        queryResult= QueryProcessing.BooleanQuery("market OR sports AND warming");
         driver.displayDocById(queryResult);
 }
 
@@ -181,7 +181,10 @@ public static void main(String args[]){
 //    driver.displayStopWords();
 //    driver.indexl.displayDocuments();
 //    System.out.println("\n");
+//    
 //    driver.inverted.display_inverted_index();
+//    
+//    driver.invertedBST.display_inverted_index_BST();
 //    
 //    
 //    System.out.println("\n=================== InvertedBST from the Inverted list ===================");

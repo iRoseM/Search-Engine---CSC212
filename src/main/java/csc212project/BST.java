@@ -94,6 +94,8 @@ public class BST<T> {
         System.out.println(p.data.toString());
         preOrder(p.left);
         preOrder(p.right);   
-    }   
+    }
+    
+    
     
 }
