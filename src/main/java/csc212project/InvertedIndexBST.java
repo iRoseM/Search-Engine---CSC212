@@ -37,5 +37,7 @@ public class InvertedIndexBST {
         }
        inverted_index.inOrder();
     }
+    
+    
 
 }

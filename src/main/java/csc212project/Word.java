@@ -36,14 +36,34 @@ public class Word {
       return false;
     }
     
-    public void display(){
-        System.out.println("\n--------------------------");
-        System.out.print("Word: "+text+"\n");
-        System.out.print("Document IDs: ");
-        System.out.print("[");
-        doc_IDS.display();
-        System.out.println("]");
+//    public void display(){
+//        System.out.println("\n--------------------------");
+//        System.out.print("Word: "+text+"\n");
+//        System.out.print("Document IDs: ");
+//        System.out.print("[");
+//        doc_IDS.display();
+//        System.out.println("]");
+//    }
+        @Override
+    public String toString() {
+        // Format Word object for meaningful output
+        return "";
     }
 
+    public void display() {
+        System.out.println("\n--------------------------");
+        System.out.println("Word: " + text);
+        System.out.print("Document IDs: [");
+
+        // Display doc_IDS contents
+        doc_IDS.findFirst();
+        while (!doc_IDS.last()) {
+            System.out.print(doc_IDS.retrieve() + ", ");
+            doc_IDS.findNext();
+        }
+        System.out.print(doc_IDS.retrieve()); // Last ID without a trailing comma
+        System.out.println("]");
+    }
+    
 
 }

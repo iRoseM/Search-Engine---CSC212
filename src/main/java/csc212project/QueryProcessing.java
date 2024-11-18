@@ -47,8 +47,8 @@ public static LinkedList<Integer>AndQuery (String Query) {
                     break;
                 }//end inner while for B
             }//end if not found
-            if (!A. last())
-                A. findNext();
+            if (!A.last())
+                A.findNext();
             else 
                 break;
             }
