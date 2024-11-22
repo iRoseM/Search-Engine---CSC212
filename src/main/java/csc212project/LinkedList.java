@@ -5,6 +5,7 @@ package csc212project;
 public class LinkedList<T> {
     private Node<T> head;
     private Node<T> current;
+    int count=0;
     
     public LinkedList(){
         head= current= null;
@@ -39,6 +40,7 @@ public class LinkedList<T> {
     }
     
     public void insert(T val){
+        count++;
         Node<T> tmp;
         if(empty()){
             current= head= new Node<T> (val);
@@ -89,16 +91,13 @@ public class LinkedList<T> {
         }
     }
     
-   
-//   public static void main(String [] args){
-//       LinkedList<String> l= new LinkedList<String>();
-//       
-//       l.insert("aa");
-//       l.insert("b");
-//       l.insert("c");
-//       
-//       l.findFirst();
-//       l.remove();
-//       l.display();
-//   }
+    public boolean exist(T x) {
+        Node<T>p=head;
+        while(p!=null){
+            if (p.data.equals(x))
+                return true;
+            p=p.next;
+        }
+        return false;
+    }
 }

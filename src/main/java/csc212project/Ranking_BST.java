@@ -24,6 +24,7 @@ public class Ranking_BST {
     public static Document get_doc_given_id(int id) {
         return index1.get_document_given_id(id);
     }
+    
     public static int term_frequency_in_doc(Document d, String term) {
         int frequency = 0;
         LinkedList<String> words= d.words;
@@ -39,6 +40,7 @@ public class Ranking_BST {
                 frequency++;
         return frequency;      
     }
+    
     public static int get_doc_rank_score(Document document, String query) {
         if (query.length()==0)
             return 0;
@@ -48,6 +50,7 @@ public class Ranking_BST {
             sum_freq+=term_frequency_in_doc(document,terms[i].trim().toLowerCase());
         return sum_freq;
     }
+    
     public static void RankQuery (String query) {
         LinkedList<Integer> A = new LinkedList<Integer> ();
         if (Query.length()==0) 
@@ -61,6 +64,7 @@ public class Ranking_BST {
             Adding_in_1_List_Sorted(A);
         }
     }
+    
     public static void Adding_in_1_List_Sorted (LinkedList<Integer> A) {
         if (A.empty())
             return;
@@ -76,6 +80,7 @@ public class Ranking_BST {
                 break;
         }
     }
+    
     public static boolean existsIn_result(LinkedList<Integer> result,Integer id){
         if (result.empty())
             return false;
@@ -116,6 +121,7 @@ public class Ranking_BST {
             all_doc_in_query.findNext();
             
     }
+    
     public static void insert_sorted_inBST(){
         RankQuery(Query);//Finding all_doc_in_query
         if (all_doc_in_query.empty()){
@@ -133,5 +139,6 @@ public class Ranking_BST {
             int Rank = get_doc_rank_score(document, Query);
             DocIDs_withRank.insert(Rank,all_doc_in_query.retrieve());
             all_doc_in_query.findNext();
-    }     
+    } 
+    
 }

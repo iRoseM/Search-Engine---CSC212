@@ -74,6 +74,22 @@ public class index {
         return null; //if not found
     }
     
+    public LinkedList<Integer> get_all_documents_given_term(String term){
+        LinkedList<Integer>result = new LinkedList<>();
+        if(all_doc.empty()){
+            System.out.println("No documents found.");
+            return null;
+        }
+        all_doc.findFirst();
+        while(!all_doc.last()){
+            if (all_doc.retrieve().words.exist(term.toLowerCase().trim()))
+                result.insert(all_doc.retrieve().id);
+            all_doc.findNext();
+        }
+        if (all_doc.retrieve().words.exist(term.toLowerCase().trim()))
+            result.insert(all_doc.retrieve().id);
+        return result;
+    }
     
 //    public static void main(String[]args){
 //        index ind1= new  index();

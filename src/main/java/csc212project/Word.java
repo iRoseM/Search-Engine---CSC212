@@ -36,14 +36,6 @@ public class Word {
       return false;
     }
     
-//    public void display(){
-//        System.out.println("\n--------------------------");
-//        System.out.print("Word: "+text+"\n");
-//        System.out.print("Document IDs: ");
-//        System.out.print("[");
-//        doc_IDS.display();
-//        System.out.println("]");
-//    }
         @Override
     public String toString() {
         // Format Word object for meaningful output

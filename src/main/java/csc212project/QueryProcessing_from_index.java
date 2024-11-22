@@ -1,30 +1,26 @@
-
 package csc212project;
 
-public class QueryProcessing { 
-    static InvertedIndex inverted;
+public class QueryProcessing_from_index {
+    static index index1;
     
-public QueryProcessing (InvertedIndex inverted) {
-    this. inverted=inverted;
-}
-
-public static LinkedList<Integer>AndQuery (String Query) {
-    LinkedList<Integer> A=new LinkedList<Integer>() ;
-    LinkedList<Integer> B=new LinkedList<Integer>() ;
-    String terms []=Query.split ("AND"); 
-    if (terms.length==0) 
-        return A;
-    boolean found=inverted.search_word_in_inverted (terms[0].trim ().toLowerCase()) ;
-    if (found) 
-        A=inverted.inverted_index.retrieve().doc_IDS;
-    for (int i=1;i<terms.length;i++){
-        found= inverted. search_word_in_inverted (terms[i].trim().toLowerCase()) ;
-        if (found)
-            B=inverted.inverted_index.retrieve().doc_IDS;
-        A= AndQuery (A, B) ;
+    public QueryProcessing_from_index (index index1) {
+        this.index1=index1;
     }
-    return A;
-}
+
+
+    public static LinkedList<Integer>AndQuery (String Query) {
+        LinkedList<Integer> A=new LinkedList<Integer>() ;
+        LinkedList<Integer> B=new LinkedList<Integer>() ;
+        String terms []=Query.split ("AND"); 
+        if (terms.length==0) 
+            return A;
+        A=index1.get_all_documents_given_term(terms[0].trim().toLowerCase());
+        for(int i = 0; i<terms.length ;i++){
+            B=index1.get_all_documents_given_term(terms[i].trim().toLowerCase());
+            A=AndQuery(A,B);
+        }
+        return A;
+    }
 
     public static LinkedList<Integer > AndQuery (LinkedList<Integer>A, LinkedList<Integer>B) {
         LinkedList<Integer> result=new LinkedList<Integer>();
@@ -60,17 +56,13 @@ public static LinkedList<Integer>AndQuery (String Query) {
         String terms []=Query.split ("OR"); 
         if (terms.length==0) 
             return A;
-        boolean found=inverted.search_word_in_inverted (terms[0].trim().toLowerCase()) ;
-        if (found) 
-            A=inverted.inverted_index.retrieve().doc_IDS;
-        for (int i=1;i<terms.length;i++){
-            found=inverted. search_word_in_inverted (terms[i].trim().toLowerCase()) ;
-            if (found)
-                B=inverted. inverted_index.retrieve().doc_IDS;
-            A= OrQuery(A, B) ;
+        A=index1.get_all_documents_given_term(terms[0].trim().toLowerCase());
+        for(int i = 0; i<terms.length ;i++){
+            B=index1.get_all_documents_given_term(terms[i].trim().toLowerCase());
+            A=OrQuery(A,B);
         }
-        return A;
- }
+        return A;   
+    }
         public static LinkedList<Integer > OrQuery (LinkedList<Integer>A, LinkedList<Integer>B) {
         LinkedList<Integer> result=new LinkedList<Integer>();
         if (A.empty () && B.empty ())
@@ -140,6 +132,4 @@ public static LinkedList<Integer>AndQuery (String Query) {
             return true;
         return false;
     }
-    
-    
 }

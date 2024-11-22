@@ -7,7 +7,7 @@ public class InvertedIndex {
         inverted_index=new LinkedList<Word>();
     }
     
-    public void add(String text, int id) {
+    public void add(String text, int id) {  
         //If the word isn't found 
         if (!search_word_in_inverted(text) ){ 
             Word word = new Word(text);
@@ -18,6 +18,7 @@ public class InvertedIndex {
             Word existingWord = inverted_index.retrieve();
             existingWord.add_Id(id);
         }
+        
     }    
 
     public boolean search_word_in_inverted(String word) {

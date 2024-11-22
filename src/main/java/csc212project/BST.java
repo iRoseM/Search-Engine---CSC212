@@ -1,9 +1,11 @@
 
 package csc212project;
+
 class BSTNode<T> {
     public T data;
     public String key;
     public BSTNode <T> left,right;
+    
     public BSTNode (String key, T data ){
         this.data=data;
         this.key=key;

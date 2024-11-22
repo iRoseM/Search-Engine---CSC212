@@ -11,7 +11,8 @@ class BSTNode1<T> {
         this.key=key;
         left = right = null;
     }   
-}   
+}
+
 public class BST_int<T> {
     private BSTNode1<T> root , current;
     
