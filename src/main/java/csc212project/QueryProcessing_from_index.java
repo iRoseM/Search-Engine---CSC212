@@ -23,13 +23,13 @@ public class QueryProcessing_from_index {
     }
 
     public static LinkedList<Integer > AndQuery (LinkedList<Integer>A, LinkedList<Integer>B) {
-        LinkedList<Integer> result=new LinkedList<Integer>();
+        LinkedList<Integer> result=new LinkedList<>();
         if (A. empty() || B.empty())
             return result;
         A.findFirst();
         while (true) {
             boolean found=existsIn_result(result, A.retrieve());
-            if(!found) { //Not found in result
+            if(!found) { 
                 B.findFirst ();
                 while (true) {
                     if (B.retrieve().equals (A.retrieve())){
@@ -40,8 +40,8 @@ public class QueryProcessing_from_index {
                     B.findNext();
                 else
                     break;
-                }//end inner while for B
-            }//end if not found
+                } //end inner while for B
+            } //end if not found 
             if (!A.last())
                 A.findNext();
             else 
@@ -70,7 +70,7 @@ public class QueryProcessing_from_index {
         A.findFirst() ;
         while (!A.empty()) {
             boolean found=existsIn_result(result, A.retrieve());
-            if(!found)//Not found in result
+            if(!found)
                 result.insert(A.retrieve());
 
             if (!A. last())
@@ -131,5 +131,28 @@ public class QueryProcessing_from_index {
         if (result.retrieve().equals(id)) 
             return true;
         return false;
+    }
+    public static LinkedList<Integer> notQuery(String Query,index ind1) {
+        LinkedList<Integer>A=new LinkedList<>();
+        LinkedList<Integer>B=new LinkedList<>();
+        if (Query.length()==0) return A;
+        
+        if (!Query.contains("NOT")) return A;
+        
+        String term = Query.replaceAll("NOT", "").trim().toLowerCase();
+        A=index1.get_all_documents_given_term(term.trim().toLowerCase());
+        
+        if (ind1.all_doc.empty()) return A;
+        
+        ind1.all_doc.findFirst();
+        while (!ind1.all_doc.last()){
+            if (!A.exist(ind1.all_doc.retrieve().id))
+                B.insert(ind1.all_doc.retrieve().id);
+            ind1.all_doc.findNext();
+        }
+        if (!A.exist(ind1.all_doc.retrieve().id))
+                B.insert(ind1.all_doc.retrieve().id);
+        return B;
+    
     }
 }

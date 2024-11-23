@@ -16,9 +16,8 @@ public class InvertedIndex {
         }
         else {
             Word existingWord = inverted_index.retrieve();
-            existingWord.add_Id(id);
+            existingWord.add_Id(id); 
         }
-        
     }    
 
     public boolean search_word_in_inverted(String word) {
