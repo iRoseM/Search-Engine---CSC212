@@ -200,13 +200,22 @@ LinkedList<String> unique_words=new LinkedList<>();
         
         public void make_index_and_inverted_index(String content, LinkedList<String>words_in_doc, int id){
 
-            content =content.replaceAll("\'", " ");
-            content =content.replaceAll("-", " ");
+            
+            
+            while (content.contains("-")) {
+                if (content.charAt(content.indexOf("-")-2)==' ')
+                    content=content.replaceFirst("-", "");
+                else 
+                    content = content.replaceFirst("-", " ");
+            }
+            //to count unique words
+            
+            content =content.replaceAll("\'", "");
+            content =content.replaceAll("-", "");
+            content= content.replaceAll("'", "");
             content =content.toLowerCase().replaceAll("[^a-zA-Z0-9 ]", "");
             String[] tokens = content.split("\\s+");
             num_tokens+= tokens.length;
-            
-            //to count unique words
             for (String w: tokens){
                 if (!unique_words.exist(w))
                     unique_words.insert(w);
@@ -219,18 +228,14 @@ LinkedList<String> unique_words=new LinkedList<>();
             }
             
             
-            while (content.contains("-")) {
-                if (content.charAt(content.indexOf("-")-2)==' ')
-                    content=content.replaceFirst("-", "");
-                else 
-                    content = content.replaceFirst("-", " ");
-            }
+            
 
             
         }
         public void count_Tokens_and_unique_words(String content) {
             content=content.replaceAll("\'", " ");
             content =content.replaceAll("-", " ");
+            content =content.replaceAll("'", " ");
             content=content.toLowerCase().replaceAll("[^a-zA-Z0-9 ]", "");
             String[] tokens = content.split("\\s+");
             num_tokens+=tokens.length;
@@ -279,12 +284,11 @@ LinkedList<String> unique_words=new LinkedList<>();
                         System.out.println("Enter a term to retrieve");  
                         String term=read.next();
                         term=term.toLowerCase().trim();
-                        System.out.println(":using index with lists");
+                        System.out.println("word:"+term);
                         LinkedList<Integer>res= Driver.index1.get_all_documents_given_term(term);
-                        System.out.print("word:"+term+"[");
+                        System.out.print("Document IDs: "+"[");
                         res.display();
                         System.out.println("]");
-                        System.out.println("=================================");
                         System.out.println("-inverted index with lists");
                         boolean found=driver.inverted.search_word_in_inverted(term);
                         if(found)
@@ -392,8 +396,8 @@ LinkedList<String> unique_words=new LinkedList<>();
 
         }
         public static void main(String args[]){
-            test();
-//            testDataset();
+         test();
+//           testDataset();
 
         //    Driver driver=new Driver();
         //

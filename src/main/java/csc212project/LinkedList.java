@@ -85,10 +85,11 @@ public class LinkedList<T> {
             System.out.println("Empty List");
         
         Node<T> p= head;
-        while (p != null){
-            System.out.print(p.data + " ");
+        while (p.next != null){
+            System.out.print(p.data + ", ");
             p= p.next;
         }
+        System.out.print(p.data + ", ");
     }
     
     public boolean exist(T x) {
