@@ -14,11 +14,11 @@ public class QueryProcessing {
     
     if(terms.length == 0 ) 
         return listA;
-    boolean found = inverted.search_word_in_inverted(terms[0].trim().toLowerCase()); // search
+    boolean found = inverted.searchWordInInverted(terms[0].trim().toLowerCase()); // search
     if (found)
         listA = inverted.inverted_index.retrieve().doc_IDS;
     for (int i=1 ; i<terms.length ; i++){
-        found = inverted.search_word_in_inverted(terms[i].trim().toLowerCase()); // search
+        found = inverted.searchWordInInverted(terms[i].trim().toLowerCase()); // search
     if (found)
         listB = inverted.inverted_index.retrieve().doc_IDS;
     
@@ -64,11 +64,11 @@ public class QueryProcessing {
 
         if(terms.length == 0 ) 
             return listA;
-        boolean found = inverted.search_word_in_inverted(terms[0].trim().toLowerCase()); // search
+        boolean found = inverted.searchWordInInverted(terms[0].trim().toLowerCase()); // search
         if (found)
             listA = inverted.inverted_index.retrieve().doc_IDS;
         for (int i=1  ; i<terms.length ; i++){
-            found = inverted.search_word_in_inverted(terms[i].trim().toLowerCase()); // search
+            found = inverted.searchWordInInverted(terms[i].trim().toLowerCase()); // search
         if (found)
             S = inverted.inverted_index.retrieve().doc_IDS;
 
@@ -109,16 +109,6 @@ public class QueryProcessing {
       return result;
        }
    
-   public static LinkedList<Integer> BooleanQuery(String Query){
-        if(!Query.contains("AND") && !Query.contains("OR"))
-            return AndQuery(Query);
-        else if(Query.contains("AND") && !Query.contains("OR"))
-            return AndQuery(Query);
-        else if(!Query.contains("AND") && Query.contains("OR"))
-            return ORQuery(Query);
-        else
-            return MixedQuery(Query);
-}
     
     public static LinkedList<Integer>MixedQuery(String Query){
         LinkedList<Integer> listA= new LinkedList<Integer>();

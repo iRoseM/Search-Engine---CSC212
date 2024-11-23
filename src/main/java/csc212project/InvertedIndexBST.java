@@ -11,7 +11,7 @@ public class InvertedIndexBST {
     
     public void add(String text, int id) {
         //If the word isn't found 
-        if (!search_word_in_inverted(text) ){ 
+        if (!searchWordInInverted(text) ){ 
             Word word = new Word(text);
             word.doc_IDS.insert(id);
             inverted_index.insert(text,word);
@@ -36,7 +36,7 @@ public class InvertedIndexBST {
         inverted_index.insert(inverted.inverted_index.retrieve().text, inverted.inverted_index.retrieve());
     }
 
-    public boolean search_word_in_inverted(String word) {
+    public boolean searchWordInInverted(String word) {
         return inverted_index.findKey(word);
     }
     

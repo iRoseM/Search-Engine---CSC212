@@ -6,16 +6,7 @@ public class QueryProcessing_from_index {
     public QueryProcessing_from_index(index index1){
     this.index = index1;
     }
-    public static LinkedList<Integer> BooleanQuery(String Query){
-        if(!Query.contains("AND") && !Query.contains("OR"))
-            return AndQuery(Query);
-        else if(Query.contains("AND") && !Query.contains("OR"))
-            return AndQuery(Query);
-        else if(!Query.contains("AND") && Query.contains("OR"))
-            return ORQuery(Query);
-        else
-            return MixedQuery(Query);
-}
+
     
     public static LinkedList<Integer>MixedQuery(String Query){
         LinkedList<Integer> listA= new LinkedList<Integer>();
@@ -38,9 +29,9 @@ public class QueryProcessing_from_index {
 
         if(terms.length == 0 ) 
             return listA;
-        listA = index.get_all_documents_given_term(terms[0].trim().toLowerCase()); // search
+        listA = index.getAllDocGivenTerm(terms[0].trim().toLowerCase()); // search
         for (int i=1 ; i<terms.length ; i++){
-            listB = index.get_all_documents_given_term(terms[i].trim().toLowerCase()); // search
+            listB = index.getAllDocGivenTerm(terms[i].trim().toLowerCase()); // search
             listA = AndQueryIntersection(listA,listB);
         }
         return listA;
@@ -83,9 +74,9 @@ public class QueryProcessing_from_index {
 
         if(terms.length == 0 ) 
             return listA;
-        listA = index.get_all_documents_given_term(terms[0].trim().toLowerCase()); // search
+        listA = index.getAllDocGivenTerm(terms[0].trim().toLowerCase()); // search
         for (int i=1  ; i<terms.length ; i++){
-            listB = index.get_all_documents_given_term(terms[i].trim().toLowerCase()); // search
+            listB = index.getAllDocGivenTerm(terms[i].trim().toLowerCase()); // search
 
         listA = ORQueryUnion(listA , listB);
         }
@@ -121,7 +112,7 @@ public class QueryProcessing_from_index {
                 break;
        }
       return result;
-       }
+    }
    
    
    
