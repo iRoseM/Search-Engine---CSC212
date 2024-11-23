@@ -37,26 +37,29 @@ public class Ranking_BST {
             words.findNext();
         }
         if (words.retrieve().equalsIgnoreCase(term)) //last wors
-                frequency++;
+            frequency++;
         return frequency;      
     }
     
     public static int get_doc_rank_score(Document document, String query) {
         if (query.length()==0)
             return 0;
+        
         String terms[]=query.split(" ");
         int sum_freq=0;
-        for(int i =0; i<terms.length;i++)
-            sum_freq+=term_frequency_in_doc(document,terms[i].trim().toLowerCase());
+        
+        for(int i =0; i<terms.length; i++)
+            sum_freq+= term_frequency_in_doc(document,terms[i].trim().toLowerCase());
         return sum_freq;
     }
     
     public static void RankQuery (String query) {
-        LinkedList<Integer> A = new LinkedList<Integer> ();
+        LinkedList<Integer> A = new LinkedList<Integer>();
         if (Query.length()==0) 
             return;
         String terms[]=query.split(" ");
         boolean found = false;
+        
         for (int i =0 ;i<terms.length;i++){
             found = inverted.search_word_in_inverted(terms[i].trim().toLowerCase());
             if(found)
@@ -68,6 +71,7 @@ public class Ranking_BST {
     public static void Adding_in_1_List_Sorted (LinkedList<Integer> A) {
         if (A.empty())
             return;
+        
         A.findFirst();
         while (!A.empty()){
             boolean found = existsIn_result(all_doc_in_query,A.retrieve());
@@ -84,8 +88,9 @@ public class Ranking_BST {
     public static boolean existsIn_result(LinkedList<Integer> result,Integer id){
         if (result.empty())
             return false;
+        
         result.findFirst();
-        while (!result.last()) {
+        while (!result.last()){
             if (result.retrieve().equals(id))
                 return true;
             result.findNext();
@@ -95,14 +100,15 @@ public class Ranking_BST {
         return false;
     }
     
-    public static void  insert_sorted_Id_list(Integer id) {
+    public static void  insert_sorted_Id_list(Integer id){
         if (all_doc_in_query.empty()){
             all_doc_in_query.insert(id);
             return;
         }
+        
         all_doc_in_query.findFirst();
         while(!all_doc_in_query.last()){
-            if (id<all_doc_in_query.retrieve()){
+            if (id>all_doc_in_query.retrieve()){
                 Integer id1 = all_doc_in_query.retrieve();
                 all_doc_in_query.update(id);
                 all_doc_in_query.insert(id1);
@@ -111,15 +117,12 @@ public class Ranking_BST {
             else
                 all_doc_in_query.findNext();
         }
-        if (id<all_doc_in_query.retrieve()){
+        if (id>all_doc_in_query.retrieve()){
             Integer id1 = all_doc_in_query.retrieve();
             all_doc_in_query.update(id);
             all_doc_in_query.insert(id1);
             return;
         }
-        else
-            all_doc_in_query.findNext();
-            
     }
     
     public static void insert_sorted_inBST(){
@@ -138,7 +141,6 @@ public class Ranking_BST {
             Document document = get_doc_given_id(all_doc_in_query.retrieve());
             int Rank = get_doc_rank_score(document, Query);
             DocIDs_withRank.insert(Rank,all_doc_in_query.retrieve());
-            all_doc_in_query.findNext();
     } 
     
 }
