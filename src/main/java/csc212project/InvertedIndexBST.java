@@ -1,15 +1,15 @@
 
 package csc212project;
 
-
-public class InvertedIndexBST {
-   
-    BST<Word> inverted_index; 
+//inverted by binary search tree
+public class InvertedIndexBST { 
+    BST<Word> inverted_index;
     
-        public InvertedIndexBST(){
+    public InvertedIndexBST(){
         inverted_index=new BST<Word>();
     }
-       public void add(String text, int id) {
+    
+    public void add(String text, int id) {
         //If the word isn't found 
         if (!search_word_in_inverted(text) ){ 
             Word word = new Word(text);
@@ -20,6 +20,20 @@ public class InvertedIndexBST {
             Word existingWord = inverted_index.retrieve();
             existingWord.add_Id(id);
         }
+    }
+    
+    public void add_from_invertedList(InvertedIndex inverted){
+        if(inverted.inverted_index.empty())
+            return;
+        
+        inverted.inverted_index.findFirst();
+        while(!inverted.inverted_index.last()){
+            inverted_index.insert(inverted.inverted_index.retrieve().text, inverted.inverted_index.retrieve());
+            
+            inverted.inverted_index.findNext();
+        }
+        
+        inverted_index.insert(inverted.inverted_index.retrieve().text, inverted.inverted_index.retrieve());
     }
 
     public boolean search_word_in_inverted(String word) {

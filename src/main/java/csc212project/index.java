@@ -2,45 +2,40 @@
 package csc212project;
 
 
-public class index {
-    
+public class index {  
     LinkedList<Document>all_doc;
+    
     public index(){
-        all_doc=new LinkedList<Document>();
-        
+        all_doc=new LinkedList<Document>();  
     }
 
     ///helping methods//
-    public void add_document(Document d)
-    {
+    public void add_document(Document d){
         all_doc.insert(d);
     }
     
-    public void displayDocuments(){
-        
+    public void displayDocuments(){ 
       if (all_doc==null){
           System.out.println("null docs");
-          return;
-          
-      }  
-      else if (all_doc.empty()){
+          return;    
+      }else if (all_doc.empty()){
           System.out.println("empty docs");
-                  return;
+          return;
       }
       
       all_doc.findFirst();
       while (!all_doc.last()){
           Document doc= all_doc.retrieve();
           System.out.println("\n ------------------------");
-            System.out.println("ID:"+ doc.id);
-            doc.words.display();
-            all_doc.findNext();
+          System.out.println("ID:"+ doc.id);
+          doc.words.display();
+          all_doc.findNext();
       }
+      
       Document doc=all_doc.retrieve();
        System.out.println("\n ------------------------");
-            System.out.println("ID:"+ doc.id);
-            doc.words.display();
-            
+       System.out.println("ID:"+ doc.id);
+       doc.words.display();       
     }
     
     public void findAndDisplayDoc(int id) {
@@ -65,14 +60,34 @@ public class index {
     
 //    Method to retrun document given the id, used in class Ranked
     public Document get_document_given_id(int id) {
+        if(all_doc.empty()){
+            System.out.println("No document exisit");
+            return null;
+        }
+        
         all_doc.findFirst();
         while (!all_doc.last()) {
-            Document doc = all_doc.retrieve();
-            if (doc.id == id)
-                return doc;
+            if(all_doc.retrieve().id == id){
+                System.out.print(id);
+                return all_doc.retrieve();
+            }
+            all_doc.findNext();
         }
+        if(all_doc.retrieve().id == id){
+                System.out.print(id);
+                return all_doc.retrieve();
+            }
         return null; //if not found
     }
+//    public Document get_document_given_id(int id) {
+//        all_doc.findFirst();
+//        while (!all_doc.last()) {
+//            Document doc = all_doc.retrieve();
+//            if (doc.id == id)
+//                return doc;
+//        }
+//        return null; //if not found
+//    }
     
     public LinkedList<Integer> get_all_documents_given_term(String term){
         LinkedList<Integer>result = new LinkedList<>();

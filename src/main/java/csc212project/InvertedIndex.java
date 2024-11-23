@@ -1,5 +1,7 @@
 
 package csc212project;
+
+//inverted by linkedList
 public class InvertedIndex {
     LinkedList<Word> inverted_index; 
     
@@ -29,7 +31,7 @@ public class InvertedIndex {
                 return true;
             inverted_index.findNext();
         }
-        if (inverted_index.retrieve().equals(word)) //For the last word
+        if(inverted_index.retrieve().equals(word)) //For the last word
             return true;
         return false;
     }
@@ -44,7 +46,7 @@ public class InvertedIndex {
             return;
         }
         inverted_index.findFirst();
-        while (! inverted_index.last()){
+        while (!inverted_index.last()){
             inverted_index.retrieve().display();
             inverted_index.findNext();
         }
