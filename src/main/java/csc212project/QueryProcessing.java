@@ -59,7 +59,7 @@ public class QueryProcessing {
    
      public static LinkedList<Integer> ORQuery(String Q){//     Q=Query
         LinkedList<Integer> listA = new LinkedList<Integer> ();//first list A
-        LinkedList<Integer> S = new LinkedList<Integer> ();//second listB
+        LinkedList<Integer> listB = new LinkedList<Integer> ();//second listB
         String terms[] = Q.split("OR");
 
         if(terms.length == 0 ) 
@@ -70,9 +70,9 @@ public class QueryProcessing {
         for (int i=1  ; i<terms.length ; i++){
             found = inverted.searchWordInInverted(terms[i].trim().toLowerCase()); // search
         if (found)
-            S = inverted.inverted_index.retrieve().doc_IDS;
+            listB = inverted.inverted_index.retrieve().doc_IDS;
 
-        listA = ORQueryUnion(listA , S);
+        listA = ORQueryUnion(listA , listB);
         }
         return listA;
     }
