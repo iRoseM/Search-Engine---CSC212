@@ -355,8 +355,8 @@ LinkedList<String> unique_words=new LinkedList<>();
                         String query2=read.nextLine();
     //                    System.out.println("Debug: Query is - " + query2);
                         query2=query2.toLowerCase();            
-                        Ranking ranking=new Ranking(driver.inverted, index1,query2);
-                        ranking.insert_sorted_in_list();
+                        Ranking ranking=new Ranking(driver.invertedBST, index1,query2);
+                        ranking.insert_sorted_list();
                         ranking.display_all_doc_with_score_usingList();
                         break;
                     case 4:
